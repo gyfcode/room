@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		 html,body{
+	         width:100%;height:100%;overflow: hidden;
+	         padding:0;margin:0;
+	     }
+	     .scene{
+            width:100%;height:100%;
+			/*3D透视效果 焦距*/
+            perspective: 500px;
+
+        }
+        .box{
+            width:100%;height:100%;
+            position: relative;
+            /*保留子元素sd 效果*/
+           	transform-style: preserve-3d;
+           	/*旋转的位置*/
+           	transform-origin: center center 600px;
+        	transform: rotateY(-180deg);
+        }
+         .box .panel{
+            width:100%;height:100%;
+            position: absolute;
+        }
+        .box .panel:nth-child(1){
+         /*棚顶*/
+         transform-origin: top;
+         transform: rotateX(90deg);
+         background: url(4.jpg) no-repeat center center;
+         background-size:contain;
+         box-shadow:  0 0 250px #aaa inset;
+     }
+     .box .panel:nth-child(2){
+     	/*左面*/
+     	background: url(5.jpg) no-repeat;
+         background-size:cover;
+       	/*旋转基点*/
+         transform-origin: left;
+         transform: rotateY(-90deg);
+         box-shadow:  0 0 250px #aaa inset;
+     }
+       .box .panel:nth-child(3){
+       	/*后面*/
+         box-shadow:  0 0 250px #aaa inset;
+         background: url(5.jpg) no-repeat;
+         background-size:cover;
+			
+
+     }
+
+     .box .panel:nth-child(4){
+     	/*右面*/
+         transform-origin: right;
+         background: url(5.jpg) no-repeat;
+         background-size:cover;
+         transform: rotateY(90deg);
+         box-shadow:  0 0 250px #aaa inset;
+     }
+      .box .panel:nth-child(5){
+      	/*地板*/
+         background: blue;
+         transform-origin: bottom;
+         background:red;
+      	background: url(2.png) repeat;
+      	background-size:30%;
+     }
+     .box .panel:nth-child(6){
+     	/*前面*/
+         background: url(1.png) no-repeat 0 -20px;
+         background-size: cover;
+
+     }
+     .menbox{
+		position: absolute;
+     	width:200px;
+     	height:400px;
+     	left:80px;
+     	bottom:0;
+     	background: url(8.jpg) no-repeat -400px 0;
+     	border:10px solid #DE5448;	
+     }
+     .men{
+     	position: absolute;
+     	width:200px;
+     	height:400px;
+     	left:0;
+     	bottom:0;
+     	background: url(6.jpg) no-repeat 0 0;
+        background-size: cover;
+        animation:demo 5s infinite;
+        border:10px solid #DE5448;
+        box-sizing: border-box;
+     }
+   
+   	@keyframes demo {
+   		0%{
+   			transform-origin: right;
+   			transform: rotateY(0deg);
+   		}
+   		100%{
+   			transform-origin: right;
+   			transform: rotateY(-90deg);
+   		}
+   	}
+   	.TV{
+   		width: 650px;
+   		height:350px;
+   		background: red;
+   		position: absolute;
+   		border: 10px solid #F2BF13;
+   		left:30%;
+   		right:0;
+   		top:0;
+   		bottom:0;
+   		background: url(10.png) no-repeat 0 0;
+        background-size: cover;
+   		margin:auto 0;
+   	}
+   	.fish{
+   		width:100px;
+   		height:50px;
+   		background: red;
+   		position: absolute;
+   		top:65%;
+   		right:0;left:0;
+   		margin:0 auto;
+   		background: url(11.png) no-repeat 0 0;
+        background-size: 40%;
+        animation:demo2 10s linear  infinite;
+   	}
+   	.fish2{
+   		width:100px;
+   		height:50px;
+   		background: red;
+   		position: absolute;
+   		top:75%;
+   		right:0;left:0;
+   		margin:0 auto;
+   		background: url(11.png) no-repeat 0 0;
+        background-size: 40%;
+        animation:demo3 10s linear  infinite;
+   	}
+   	@keyframes demo2 {
+   		0%{transform:rotateY(90deg)}
+   		5%{right:60%}
+   		10%{right:65%}
+   		15%{transform:rotateY(-90deg)}
+   		17%{right:60%}
+   		20%{right:50%}
+   		25%{right:40%}
+   		15%{transform:rotateY(90deg)}
+   		30%{right:50%}
+   		35%{transform:rotate(15deg)}40%{left:60%;}45%{top:75%;}
+   		50%{transform:rotateY(15deg);}
+   		60%{top:90%;}
+   		75%{right:65%;}80%{right:60%;}85%{transform:rotate(35deg)}90%{right:45%;}95%{transform:rotateY(15deg);}
+   		100%{right:37%}
+   		
+   	}
+   	@keyframes demo3 {
+   		0%{transform:rotateY(90deg)}
+   		5%{right:23%}
+   		10%{right:20%}
+   		15%{transform:rotateY(-90deg)}
+   		17%{right:13%}
+   		20%{right:3%}
+   		23%{top:75%}
+   		25%{right:0%}
+   		27%{transform:rotateY(-90deg)}
+   		30%{right:-5%}
+   		35%{transform:rotate(65deg)}
+   		40%{right:-10%;}
+   		45%{top:65%;}
+   		50%{transform:rotateY(35deg);}
+   		55%{right:-15%;}
+   		60%{top:60%;}
+   		75%{right:-10%;}
+   		80%{right:-5%;}
+   		83%{right:0%;}
+   		86%{right:5%;}
+   		88%{transform:rotate(35deg)}
+   		90%{right:10%;}
+   		95%{right:15%;}
+   		100%{right:20%}
+   		
+   		
+   		
+   		
+   		
+   	}
+    /* #aa{
+     	height:10px;
+     	height:10px;
+     	background: #000;
+     	animation:identifier 5s linear 3 1s alternate ;
+     	animation-fill-mode: both;
+     }*/
+  
+	</style>
+</head>
+<script>
+	window.onload=function(){
+
+            var clientW=document.documentElement.clientWidth;
+            var clientH=document.documentElement.clientHeight;
+            var box=document.querySelector(".box");
+            // 旋转中心
+            // 重新定义旋转基点 z 轴的正中央
+            box.style.transformOrigin="center center "+clientW/2+"px"
+            var lastPanel=document.querySelector(".panel:last-child");
+             // 顶部天花板开始
+            var panel1=document.querySelector(".panel:nth-child(1)");
+            panel1.style.width=clientW+"px";
+            panel1.style.height=clientW+"px";
+            // 顶部天花板结束
+            // 地板开始
+            var panel5=document.querySelector(".panel:nth-child(5)");
+            panel5.style.width=clientW+"px";
+            panel5.style.height=clientW+"px"
+            panel5.style.top=-(clientW-clientH)+"px";
+            panel5.style.transform="rotateX(-90deg)";
+            // 地板结束
+
+            //前面的
+          	lastPanel.style.transform="translateZ("+clientW+"px) rotateY(180deg)";
+            var angle=0;
+            document.ondblclick=function(){
+
+                angle=0;
+                box.style.transition="transform 2s ease";
+                // 3D位移500px
+                box.style.transform="translateZ(-500px) rotate3d(0,1,0,0deg)"
+            }
+
+
+            document.onmousedown=function(e){
+              //  audios.play();
+              // audios.loop="loop";
+            	//获取鼠标按下到浏览器的距离x y
+                var startx= e.clientX;
+                var starty= e.clientY;
+                var angle1=0;
+                document.onmousemove=function(e){
+                    box.style.transition="none";
+                    //获取鼠标移动到浏览器的距离x y	
+                    var movex= e.clientX;
+                    var movey= e.clientY;
+                    // 找出鼠标移动的值
+                    angle1=Math.abs(movex-startx)>Math.abs(movey-starty)?movex-startx:movey-starty;
+                   
+                    var endx=movex-clientW/2;
+                    var endy=movey-clientH/2;
+                    var mo=Math.sqrt(endx*endx+endy*endy);
+                    var x=endx/mo;
+                    var y=endy/mo;
+                    console.log(angle+angle1)
+                    box.style.transform="translateZ(-500px) rotate3d("+0+","+1+",0, "+(angle+angle1)+"deg)";
+                    e.preventDefault();
+                }
+                document.onmouseup=function(){
+                    document.onmousemove=null;
+                    document.onmouseup=null;
+                    angle+=angle1;
+                    angle%=360;
+                }
+                e.preventDefault();
+            }
+
+            var phones=document.querySelectorAll(".phone");
+            for(var i=0;i<phones.length;i++){
+                phones[i].onclick=function(e){
+                    var cx= e.clientX;
+                    var cy= e.clientY;
+                    var a=Math.atan2(cx-clientW/2,190-100)*180/Math.PI;
+                    box.style.transformOrigin="center center "+(clientW/2-100)+"px"
+                    box.style.transform="translate3d("+0+"px,0,100px) rotateY("+a+"deg)"
+
+                    /*if(a>-74&&a<74){
+                      box.style.transform="translate3d("+(clientW/2-cx)+"px,0,300px) rotateY(0)"
+                    }else if(a<-74&&a>-90){
+                        //左
+                        alert(1);
+                        box.style.transform="translate3d("+(clientW/2-cx)+"px,0,300px) rotateY(-90deg)"
+
+                    }else if(a>74&&a<90){
+                        //右
+                        box.style.transform="translate3d("+(clientW/2-cx)+"px,0,300px) rotateY(90deg)"
+
+                    }
+                    */
+
+
+
+                }
+            }
+
+        }
+</script>
+<body>
+	<div class="scene">
+	   <div class="box">
+	       <div class="panel">
+				
+	       </div>
+	       <div class="panel">
+	         
+	       </div>
+	       <div class="panel">
+
+	       </div>
+	       <div class="panel">
+	       		<div class="menbox">
+	       			<div class="men"></div>
+	       			
+	       		</div>
+	       		<div class="TV  phone">
+	       			<div class="fish"></div>
+	       			<div class="fish2"></div>
+	       		</div>
+	       </div>
+	       <div class="panel">
+	       	
+	       </div>
+	       <div class="panel  phone"></div>
+
+	   </div>
+	   <audio src="光辉岁月.mp3" id="audios"></audio>
+</div>
+</body>
+</html>

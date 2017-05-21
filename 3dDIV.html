@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		/*所有旋转默认在自己的中心点*/
+		.box{
+			width:500px;
+			height:500px;
+			border: 1px solid #000;
+			margin: 50px auto;
+			/*确定灭点 消失点基点 body是没有高的*/
+			perspective-origin:0 0 ;
+			/*透视效果*/
+			perspective:800px; 
+			border:1px solid red;
+		}
+		.inner{
+			border:1px solid red;
+			width:200px;
+			height:200px;
+			margin: 100px auto;
+			transform-origin:left;
+			/*保留子元素的3d效果*/
+			transform-style: preserve-3d;
+			/*动画的过程时间*/
+			transition:transform 2s linear;
+			position: relative;
+		}
+		/*.inner:hover{
+			transform-origin:center center 100px;
+			
+			transform:rotateY(270deg);
+		}*/
+		.inner div{
+			width: 200px;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+			font-size:45px;
+			position: absolute;
+			
+		}
+		.div1{
+			
+			background:red;
+
+		}
+		.div2{
+			top:0;
+			left:0;
+			transform-origin:0 0;
+			transform: rotateX(90deg);
+			background: green;
+		}
+		.div3{
+			right: 0;
+			transform-origin:0 0;
+			transform: rotateY(-90deg);
+			background: pink;
+		}
+		.div4{
+			left: 0;
+			transform-origin:right 0;
+			transform: rotateY(90deg);
+			background:blue;
+		}
+		.div5{
+			left: 0;
+			bottom: 0;
+			transform-origin:bottom 0;
+			transform: rotateX(-90deg);
+			background:yellow;
+		}
+		.div6{
+			left: 0;
+			top:0;
+			transform:translateZ(200px);
+			background:yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="inner">
+			<div class="div1">1</div>
+			<div class="div2">2</div>
+			<div class="div3">3</div>
+			<div class="div4">4</div>
+			<div class="div5">5</div>
+			<div class="div6">6</div>
+		</div>
+	</div>
+</body>
+<script>
+	window.onload=function(){
+		var inner=document.getElementsByClassName("inner")[0];
+		var clientW,clientH;
+		document.onmousedown=function(e){
+			clientW=document.documentElement.clientwidth;
+			clientH=document.documentElement.clientHeight;
+
+	// 对于坐标于角度的换算,需要两个参数。
+
+   //  element所在位置的坐标 [x1,y1].
+   //  当前鼠标所在坐标 [x2,y2].
+   var x1=inner.offsetTop;
+   var y1=inner.offsetLeft;
+   var x2=e.clientX;
+   var y2=e.clientY;
+	var x = Math.abs(x1-x2);
+	var y = Math.abs(y1-y2);
+	var z = Math.sqrt(x*x+y*y);
+	var rotat = Math.round((Math.asin(y/z)/Math.PI*180)); //得到的角度
+	
+	// var x = Math.abs(x1-x2);
+	// var y = Math.abs(y1-y2);
+	// var z = Math.sqrt(x*x+y*y);
+	// var rotat = Math.round((Math.asin(y/z)/Math.PI*180));
+
+	// 第一象限
+	function aa(x2,x1,y1,y2){
+		if (x2 >= x1 && y2 <= y1) {
+	    rotat = rotat;
+		}
+		// 第二象限
+		else if (x2 <= x1 && y2 <= y1) {
+		    rotat = 180 - rotat;
+		}
+		// 第三象限
+		else if (x2 <= x1 && y2 >= y1) {
+		    rotat = 180 + rotat;
+		}
+		// 第四象限
+		else if(x2 >= x1 && y2 >= y1){
+		    rotat = 360 - rotat;
+		}
+		return rotat;
+	}
+	aa(x1,x2,y1,y2)
+	 //真实的角度
+	 console.log(rotat)
+			document.onmousemove=function(e){
+				var ev=e||window.event;
+				if(ev.preventDefault){
+					ev.preventDefault();
+				}else{
+					ev.returnValue=false;	
+				}
+				inner.style.transform="rotate("+rotat+"deg)";
+
+			}
+		}
+	}
+</script>
+
+</html>
